@@ -48,41 +48,42 @@ public class Home extends Applet implements Runnable {
 
   private static final String WIN_PATH = "rundll32";
 
-  public static void displayURL(String s) {
+  public static void displayURL(String pDisplayURL) {
     System.out.println("Testing platform :");
-    boolean flag = isWindowsPlatform();
-    String s1 = null;
+    String lString = null;
     try {
-      if (flag) {
+      if (isWindowsPlatform()) {
         System.out.println("Visiting client is running a windows platform");
-        s1 = "rundll32 url.dll,FileProtocolHandler " + s;
-        Runtime.getRuntime().exec(s1);
+        lString = "rundll32 url.dll,FileProtocolHandler " + pDisplayURL;
+        Runtime.getRuntime().exec(lString);
       } else {
         System.out.println(
-          "Visiting client is running a unix platform, cool dude !"
+          "Visiting client is running a unix platform, cool dude!"
         );
-        s1 = "netscape -remote openURL(" + s + ")";
-        Process process = Runtime.getRuntime().exec(s1);
+        lString = "netscape -remote openURL(" + pDisplayURL + ")";
+        Process process = Runtime.getRuntime().exec(lString);
         try {
-          int i = process.waitFor();
-          if (i != 0) {
-            s1 = "netscape " + s;
-            Process process1 = Runtime.getRuntime().exec(s1);
+          int lWaitFor = process.waitFor();
+          if (0 != lWaitFor) {
+            lString = "netscape " + pDisplayURL;
+            Process lProcess = Runtime.getRuntime().exec(lString);
           }
-        } catch (InterruptedException interruptedexception) {
-          System.err.println("Error bringing up browser, cmd='" + s1 + "'");
-          System.err.println("Caught: " + interruptedexception);
+        } catch (InterruptedException pInterruptedException) {
+          System.err.println(
+            "Error bringing up browser, cmd='" + lString + "'"
+          );
+          System.err.println("Caught: " + pInterruptedException);
         }
       }
-    } catch (IOException ioexception) {
-      System.err.println("Could not invoke browser, command=" + s1);
-      System.err.println("Caught: " + ioexception);
+    } catch (IOException pIOException) {
+      System.err.println("Could not invoke browser, command=" + lString);
+      System.err.println("Caught: " + pIOException);
     }
   }
 
   public static boolean isWindowsPlatform() {
-    String s = System.getProperty("os.name");
-    return s != null && s.startsWith("Windows");
+    String lString = System.getProperty("os.name");
+    return null != lString && lString.startsWith("Windows");
   }
 
   private World ivWorld;
@@ -97,10 +98,12 @@ public class Home extends Applet implements Runnable {
     if (ivThread != null) ivThread.destroy();
   }
 
-  public void displayURL(String s, boolean flag) {
-    if (flag) displayURL(s); else try {
-      getAppletContext().showDocument(new URL(s));
-    } catch (MalformedURLException _ex) {}
+  public void displayURL(String pString, boolean pFlag) {
+    if (pFlag) displayURL(pString); else try {
+      getAppletContext().showDocument(new URL(pString));
+    } catch (MalformedURLException pMalformedURLException) {
+      System.err.println("Caught: " + pMalformedURLException);
+    }
   }
 
   public String getAppletInfo() {
