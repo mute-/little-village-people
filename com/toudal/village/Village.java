@@ -1,208 +1,213 @@
 package com.toudal.village;
 
+import java.applet.*;
 // import java
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import java.applet.*;
 
-/** 
+/**
  * ===========================================================================
  * com.toudal.village
- * 
+ *
  * Project: Toudal: Little Village People in Java
  *
  * ===========================================================================
  * History:
  *
- * Version  Date        User  Comment 
+ * Version  Date        User  Comment
  * -------  ----------  ----  -----------------------------------------------
  *   1.0.0  03-11-2021   MST  Initial version
  *
  * ===========================================================================
  * Module Information:
- * 
+ *
  * DESCRIPTION: TOUDAL.WRITEME
  * ===========================================================================
  */
 public class Home extends Applet implements ActionListener, Runnable {
 
   /** */
-	public final static int cvMapSize= 80;
+  public static final int cvMapSize = 80;
   /** */
-	public Graphics ivOffGraphics;
+  public Graphics ivOffGraphics;
   /** */
-	public int ivOffWidth;
+  public int ivOffWidth;
   /** */
-	public int ivOffHeight;
+  public int ivOffHeight;
   /** */
-	public double ivXFactor;
+  public double ivXFactor;
   /** */
-	public double ivYFactor;
+  public double ivYFactor;
   /** */
   private Image ivOffImage;
   /** */
-	private Map ivMap;
+  private Map ivMap;
   /** */
-	private Vector ivPopulation= new Vector();
+  private Vector ivPopulation = new Vector();
   /** */
-	private Label ivLabelPeople= new Label("No of people");
+  private Label ivLabelPeople = new Label("No of people");
   /** */
-	private Label ivLabelDeadPeople= new Label("No of dead people");
+  private Label ivLabelDeadPeople = new Label("No of dead people");
   /** */
-	private Label ivLabelDPeople= new Label("0");
+  private Label ivLabelDPeople = new Label("0");
   /** */
-	private Label ivLabelTiredPeople= new Label("No of tired people");
+  private Label ivLabelTiredPeople = new Label("No of tired people");
   /** */
-	private Label ivLabelTPeople= new Label("0");
+  private Label ivLabelTPeople = new Label("0");
   /** */
-	private Label ivLabelMen= new Label("No of men");
+  private Label ivLabelMen = new Label("No of men");
   /** */
-	private Label ivLabelMPeople= new Label("0");
+  private Label ivLabelMPeople = new Label("0");
   /** */
-	private Label ivLabelWomen= new Label("No of women");
+  private Label ivLabelWomen = new Label("No of women");
   /** */
-	private Label ivLabelWPeople= new Label("0");
+  private Label ivLabelWPeople = new Label("0");
   /** */
-	private TextField ivTextFieldPeople= new TextField(2);
+  private TextField ivTextFieldPeople = new TextField(2);
   /** */
-	private Button ivButtonPeople= new Button("Ok");
+  private Button ivButtonPeople = new Button("Ok");
   /** */
-	private Thread ivThread;
+  private Thread ivThread;
 
-	/**
-	 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent pEvent) {
+  /**
+   * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
+   */
+  public void actionPerformed(ActionEvent pEvent) {
+    try {
+      ivLabelTPeople.setText("0");
+      ivLabelMPeople.setText("0");
+      ivLabelWPeople.setText("0");
 
-		try {
-			ivLabelTPeople.setText("0");
-			ivLabelMPeople.setText("0");
-			ivLabelWPeople.setText("0");
+      Human human;
+      ivPopulation.removeAllElements();
 
-			Human human;
-			ivPopulation.removeAllElements();
+      int tal = new Integer(ivTextFieldPeople.getText()).intValue();
+      for (int i = 0; i < tal; i++) {
+        human = new Human(this, ivMap);
+        ivPopulation.addElement(human);
+      }
 
-			int tal= new Integer(ivTextFieldPeople.getText()).intValue();
-			for (int i= 0; i < tal; i++) {
-				human= new Human(this, ivMap);
-				ivPopulation.addElement(human);
-			}
+      repaint();
+    } catch (Exception e) {
+      System.out.println("Tallet er ikke gyldigt");
+    }
+  }
 
-			repaint();
+  /**
+   *
+   */
+  public void decNoMen() {
+    String str = String.valueOf(
+      new Integer(ivLabelMPeople.getText()).intValue() - 1
+    );
+    ivLabelMPeople.setText(str);
+  }
 
-		}
-		catch (Exception e) {
-			System.out.println("Tallet er ikke gyldigt");
-		}
+  /**
+   *
+   */
+  public void decNoTired() {
+    String str = String.valueOf(
+      new Integer(ivLabelTPeople.getText()).intValue() - 1
+    );
+    ivLabelTPeople.setText(str);
+  }
 
-	}
+  /**
+   *
+   */
+  public void decNoWomen() {
+    String str = String.valueOf(
+      new Integer(ivLabelWPeople.getText()).intValue() - 1
+    );
+    ivLabelWPeople.setText(str);
+  }
 
-	/**
-	 *
-	 */
-	public void decNoMen() {
-		String str= String.valueOf(new Integer(ivLabelMPeople.getText()).intValue() - 1);
-		ivLabelMPeople.setText(str);
-	}
+  /**
+   * @see java.applet.Applet#getAppletInfo()
+   */
+  public String getAppletInfo() {
+    return "Village\n" + "\n" + "This type was created in VisualAge.\n" + "";
+  }
 
-	/**
-	 *
-	 */
-	public void decNoTired() {
-		String str= String.valueOf(new Integer(ivLabelTPeople.getText()).intValue() - 1);
-		ivLabelTPeople.setText(str);
-	}
+  /**
+   *
+   */
+  public void incNoMen() {
+    String str = String.valueOf(
+      new Integer(ivLabelMPeople.getText()).intValue() + 1
+    );
+    ivLabelMPeople.setText(str);
+  }
 
-	/**
-	 *
-	 */
-	public void decNoWomen() {
-		String str= String.valueOf(new Integer(ivLabelWPeople.getText()).intValue() - 1);
-		ivLabelWPeople.setText(str);
-	}
+  /**
+   *
+   */
+  public void incNoTired() {
+    String str = String.valueOf(
+      new Integer(ivLabelTPeople.getText()).intValue() + 1
+    );
+    ivLabelTPeople.setText(str);
+  }
 
-	/**
-	 * @see java.applet.Applet#getAppletInfo()
-	 */
-	public String getAppletInfo() {
-		return "Village\n" + "\n" + "This type was created in VisualAge.\n" + "";
-	}
+  /**
+   *
+   */
+  public void incNoWomen() {
+    String str = String.valueOf(
+      new Integer(ivLabelWPeople.getText()).intValue() + 1
+    );
+    ivLabelWPeople.setText(str);
+  }
 
-	/**
-	 *
-	 */
-	public void incNoMen() {
-		String str= String.valueOf(new Integer(ivLabelMPeople.getText()).intValue() + 1);
-		ivLabelMPeople.setText(str);
+  /**
+   * @see java.applet.Applet#init()
+   */
+  public void init() {
+    super.init();
 
-	}
+    this.setLayout(null);
+    this.setBackground(Color.white);
 
-	/**
-	 *
-	 */
-	public void incNoTired() {
-		String str= String.valueOf(new Integer(ivLabelTPeople.getText()).intValue() + 1);
-		ivLabelTPeople.setText(str);
+    // Components
+    this.add(ivLabelPeople);
+    this.add(ivTextFieldPeople);
+    this.add(ivButtonPeople);
 
-	}
+    this.add(ivLabelDeadPeople);
+    this.add(ivLabelDPeople);
 
-	/**
-	 *
-	 */
-	public void incNoWomen() {
-		String str= String.valueOf(new Integer(ivLabelWPeople.getText()).intValue() + 1);
-		ivLabelWPeople.setText(str);
+    this.add(ivLabelTiredPeople);
+    this.add(ivLabelTPeople);
 
-	}
+    this.add(ivLabelMen);
+    this.add(ivLabelMPeople);
 
-	/**
-	 * @see java.applet.Applet#init()
-	 */
-	public void init() {
-		super.init();
+    this.add(ivLabelWomen);
+    this.add(ivLabelWPeople);
 
-		this.setLayout(null);
-		this.setBackground(Color.white);
+    ivLabelPeople.setBounds(10, 10, 100, 20);
+    ivTextFieldPeople.setBounds(110, 10, 40, 20);
 
-		// Components
-		this.add(ivLabelPeople);
-		this.add(ivTextFieldPeople);
-		this.add(ivButtonPeople);
+    ivButtonPeople.setBounds(155, 10, 30, 20);
+    ivButtonPeople.addActionListener(this);
 
-		this.add(ivLabelDeadPeople);
-		this.add(ivLabelDPeople);
+    ivLabelDeadPeople.setBounds(10, 35, 140, 20);
+    ivLabelDPeople.setBounds(155, 35, 40, 20);
 
-		this.add(ivLabelTiredPeople);
-		this.add(ivLabelTPeople);
+    ivLabelTiredPeople.setBounds(10, 60, 140, 20);
+    ivLabelTPeople.setBounds(155, 60, 40, 20);
+    ivLabelMen.setBounds(10, 85, 140, 20);
+    ivLabelMPeople.setBounds(155, 85, 40, 20);
+    ivLabelWomen.setBounds(10, 110, 140, 20);
+    ivLabelWPeople.setBounds(155, 110, 40, 20);
 
-		this.add(ivLabelMen);
-		this.add(ivLabelMPeople);
+    // Stuff
+    ivOffWidth = getSize().width - 220;
+    ivOffHeight = getSize().height - 20;
 
-		this.add(ivLabelWomen);
-		this.add(ivLabelWPeople);
-
-		ivLabelPeople.setBounds(10, 10, 100, 20);
-		ivTextFieldPeople.setBounds(110, 10, 40, 20);
-
-		ivButtonPeople.setBounds(155, 10, 30, 20);
-		ivButtonPeople.addActionListener(this);
-
-		ivLabelDeadPeople.setBounds(10, 35, 140, 20);
-		ivLabelDPeople.setBounds(155, 35, 40, 20);
-
-		ivLabelTiredPeople.setBounds(10, 60, 140, 20);
-		ivLabelTPeople.setBounds(155, 60, 40, 20);
-		ivLabelMen.setBounds(10, 85, 140, 20);
-		ivLabelMPeople.setBounds(155, 85, 40, 20);
-		ivLabelWomen.setBounds(10, 110, 140, 20);
-		ivLabelWPeople.setBounds(155, 110, 40, 20);
-
-		// Stuff
-		ivOffWidth= getSize().width - 220;
-		ivOffHeight= getSize().height - 20;
-
-		/*
+    /*
 		This works:
 		offImage    = createImage(xx, yy);
 		offGraphics = offImage.getGraphics();
@@ -212,75 +217,69 @@ public class Home extends Applet implements ActionListener, Runnable {
 		offImage.getGraphics().drawEtEllerAndet...
 		*/
 
-		ivOffImage= this.createImage(ivOffWidth, ivOffHeight);
-		ivOffGraphics= ivOffImage.getGraphics();
+    ivOffImage = this.createImage(ivOffWidth, ivOffHeight);
+    ivOffGraphics = ivOffImage.getGraphics();
 
-		// Why force float
-		ivXFactor= (0.0 + ivOffWidth) / (0.0 + cvMapSize);
-		ivYFactor= (0.0 + ivOffHeight) / (0.0 + cvMapSize);
+    // Why force float
+    ivXFactor = (0.0 + ivOffWidth) / (0.0 + cvMapSize);
+    ivYFactor = (0.0 + ivOffHeight) / (0.0 + cvMapSize);
 
-		// Objects
-		ivThread= new Thread(this);
-		ivThread.start();
+    // Objects
+    ivThread = new Thread(this);
+    ivThread.start();
 
-		ivMap= new Map(this);
-	}
+    ivMap = new Map(this);
+  }
 
-	/**
-	 * @see java.awt.Component#paint(Graphics)
-	 */
-	public void paint(Graphics pGraphics) {
-		update(pGraphics);
-	}
+  /**
+   * @see java.awt.Component#paint(Graphics)
+   */
+  public void paint(Graphics pGraphics) {
+    update(pGraphics);
+  }
 
-	/**
-	 *
-	 */
-	public void run() {
+  /**
+   *
+   */
+  public void run() {
+    int deadPeople;
 
-		int deadPeople;
+    try {
+      while (true) {
+        Thread.sleep(50);
 
-		try {
-			while (true) {
-				Thread.sleep(50);
+        // Draw
+        ivMap.drawBorder();
+        ivMap.drawHouse();
+        ivMap.drawTrap();
+        ivMap.drawRestArea();
 
-				// Draw
-				ivMap.drawBorder();
-				ivMap.drawHouse();
-				ivMap.drawTrap();
-				ivMap.drawRestArea();
+        deadPeople = 0;
+        for (int i = 0; i < ivPopulation.size(); i++) {
+          if (((Human) ivPopulation.elementAt(i)).cvDead) {
+            deadPeople = deadPeople + 1;
+          } else {
+            ((Human) ivPopulation.elementAt(i)).takeAStep();
+          }
+          ((Human) ivPopulation.elementAt(i)).drawHuman();
+        }
 
-				deadPeople= 0;
-				for (int i= 0; i < ivPopulation.size(); i++) {
-					if (((Human) ivPopulation.elementAt(i)).cvDead) {
-						deadPeople= deadPeople + 1;
-					}
-					else {
-						((Human) ivPopulation.elementAt(i)).takeAStep();
-					}
-					((Human) ivPopulation.elementAt(i)).drawHuman();
-				}
+        ivLabelDPeople.setText("" + deadPeople);
 
-				ivLabelDPeople.setText("" + deadPeople);
+        repaint();
+      }
+    } catch (Exception e) {}
+  }
 
-				repaint();
-			}
-		}
-		catch (Exception e) {
-		}
+  /**
+   *
+   */
+  public void update(Graphics g) {
+    // Vertical line
+    g.setColor(Color.black);
+    g.fillRect(197, 10, 3, getSize().height - 20);
 
-	}
-
-	/**
-	 *
-	 */
-	public void update(Graphics g) {
-
-		// Vertical line
-		g.setColor(Color.black);
-		g.fillRect(197, 10, 3, getSize().height - 20);
-
-		// Draw offImage
-		g.drawImage(ivOffImage, 210, 10, this);
-	}
+    // Draw offImage
+    g.drawImage(ivOffImage, 210, 10, this);
+  }
 }
