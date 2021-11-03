@@ -128,10 +128,10 @@ public class TButtonWeb extends TButton {
   /**
    *
    */
-  public void doUpdate(int i, String pText, Color color) {
+  public void doUpdate(int i, String pText, Color pColor) {
     ivCurrentImage = i;
     ivText = pText;
-    ivColor = color;
+    ivColor = pColor;
     if (!ivText.equalsIgnoreCase("")) repaint();
   }
 
@@ -233,134 +233,6 @@ public class TButtonWeb extends TButton {
    */
   public void setSticky(boolean pFlag) {
     ivSticky = pFlag;
-  }
-
-  /**
-   *
-   */
-  @Override
-  protected void sizeChanged() {
-    repaint();
-  }
-}
-    Image aimage[],
-    Point point,
-    String s,
-    Color color,
-    Font font
-  ) {
-    this(aimage, point, s, color);
-    ivFont = font;
-  }
-
-  /**
-   *
-   */
-  public void doUpdate(int i, String s, Color color) {
-    ivCurrentImage = i;
-    ivText = s;
-    ivColor = color;
-    if (!ivText.equalsIgnoreCase("")) repaint();
-  }
-
-  /**
-   *
-   */
-  public boolean getSticky() {
-    return ivSticky;
-  }
-
-  /**
-   *
-   */
-  public boolean isDown() {
-    return ivDown;
-  }
-
-  /**
-   *
-   */
-  @Override
-  public void mouseEntered(MouseEvent pMouseEvent) {
-    if (ivLabelPoint.x != 0 || ivLabelPoint.y != 0) {
-      ivCurrentImage = 1;
-      super.mouseEntered(pMouseEvent);
-    }
-  }
-
-  /**
-   *
-   */
-  @Override
-  public void mouseExited(MouseEvent pMouseEvent) {
-    ivCurrentImage = 0;
-    super.mouseExited(pMouseEvent);
-  }
-
-  /**
-   *
-   */
-  @Override
-  public void mousePressed(MouseEvent pMouseEvent) {
-    ivCurrentImage = 2;
-    super.mousePressed(pMouseEvent);
-  }
-
-  /**
-   *
-   */
-  @Override
-  public void mouseReleased(MouseEvent pMouseEvent) {
-    ivCurrentImage = 3;
-    super.mouseReleased(pMouseEvent);
-  }
-
-  /**
-   *
-   */
-  @Override
-  protected void paint() {
-    super.ivGraphics.setColor(ivColor);
-    super.ivGraphics.setFont(ivFont);
-    switch (ivCurrentImage) {
-      case 0: // '\0'
-        super.ivGraphics.drawImage(ivImage[0], 0, 0, this);
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-      case 1: // '\001'
-        super.ivGraphics.drawImage(
-          ivImage[1],
-          ivImagePoint.x,
-          ivImagePoint.y,
-          this
-        );
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-      case 2: // '\002'
-        super.ivGraphics.drawImage(ivImage[1], 0, 0, this);
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-      case 3: // '\003'
-        super.ivGraphics.drawImage(ivImage[2], 0, 0, this);
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-    }
-  }
-
-  /**
-   *
-   */
-  public void setDown(boolean flag) {
-    ivDown = flag;
-    if (!flag) ivCurrentImage = 0; else ivCurrentImage = 2;
-    repaint();
-  }
-
-  /**
-   *
-   */
-  public void setSticky(boolean flag) {
-    ivSticky = flag;
   }
 
   /**
