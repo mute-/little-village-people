@@ -85,7 +85,7 @@ public class Home extends Applet implements Runnable {
 		return s != null && s.startsWith("Windows");
 	}
 
-	private Worlds ivWorlds;
+	private World ivWorld;
 
 	private TextArea ivTextArea;
 
@@ -120,8 +120,8 @@ public class Home extends Applet implements Runnable {
 
 	public void run() {
 		while (ivThread != null) {
-			if (!ivWorlds.cvChanged) {
-				ivWorlds.mayUpdate();
+			if (!ivWorld.cvChanged) {
+				ivWorld.mayUpdate();
 				try {
 					Thread.sleep(1000L);
 				} catch (Exception _ex) {
@@ -130,13 +130,13 @@ public class Home extends Applet implements Runnable {
 					stop();
 				}
 			}
-			if (ivWorlds.cvChanged) {
-				ivWorlds.cvChanged = false;
+			if (ivWorld.cvChanged) {
+				ivWorld.cvChanged = false;
 				try {
 					ivTextArea.setText("");
-					char ac[] = ivWorlds.getContext().toCharArray();
+					char ac[] = ivWorld.getContext().toCharArray();
 					for (int i = 0; i < ac.length; i++) {
-						if (ivWorlds.cvChanged)
+						if (ivWorld.cvChanged)
 							break;
 						if ("\243".equalsIgnoreCase(ac[i] + ""))
 							ivTextArea.append("\n");
@@ -164,9 +164,9 @@ public class Home extends Applet implements Runnable {
 		ivTextArea.setBackground(Color.black);
 		ivTextArea.setForeground(Color.red);
 		slider.setComponentRight(ivTextArea);
-		ivWorlds = Worlds.getInstance();
-		ivWorlds.cvHome = this;
-		slider.setComponentLeft(ivWorlds);
+		ivWorld = World.getInstance();
+		ivWorld.cvHome = this;
+		slider.setComponentLeft(ivWorld);
 		if (ivThread == null) {
 			ivThread = new Thread(this);
 			ivThread.start();
