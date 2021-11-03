@@ -10,9 +10,9 @@ import java.util.*;
 
 /**
  * ===========================================================================
- * com.toudal.village
+ * com.toudal.home
  *
- * Project: Toudal: Little Village People in Java
+ * Project: www.toudal.com, Little Village People in Java
  *
  * ===========================================================================
  * History:
@@ -113,32 +113,32 @@ public class World extends TPanel implements TButtonListener {
     return ivTexts[ivActive];
   }
 
-  private Image getImage(String s) {
+  private Image getImage(String pImagePath) {
     return null;
   }
 
-  private Image getImage(String s, String s1) {
-    Image image = (Image) ivHashtable.get(s + s1);
-    if (image == null) {
+  private Image getImage(String lFolder, String lFile) {
+    Image lImage = (Image) ivHashtable.get(lFolder + lFile);
+    if (lImage == null) {
       try {
-        MediaTracker mediatracker = new MediaTracker(this);
-        URL url = new URL(s + s1);
-        image = Toolkit.getDefaultToolkit().getImage(url);
-        mediatracker.addImage(image, 0);
-        mediatracker.waitForAll();
-        mediatracker.removeImage(image);
-        url.openConnection();
-      } catch (Exception exception) {
-        exception.printStackTrace();
+        MediaTracker lMediaTracker = new MediaTracker(this);
+        URL lURL = new URL(lFolder + lFile);
+        lImage = Toolkit.getDefaultToolkit().getImage(lURL);
+        lMediaTracker.addImage(lImage, 0);
+        lMediaTracker.waitForAll();
+        lMediaTracker.removeImage(lImage);
+        lURL.openConnection();
+      } catch (Exception pException) {
+        pException.printStackTrace();
       }
-      if (image == null) {
-        image = createImage(10, 10);
-        image.getGraphics().setColor(Color.black);
-        image.getGraphics().drawString("NO Image", 10, 20);
+      if (lImage == null) {
+        lImage = createImage(10, 10);
+        lImage.getGraphics().setColor(Color.black);
+        lImage.getGraphics().drawString("NO Image", 10, 20);
       }
-      ivHashtable.put(s + s1, image);
+      ivHashtable.put(lFolder + lFile, lImage);
     }
-    return image;
+    return lImage;
   }
 
   public static World getInstance() {
@@ -166,39 +166,43 @@ public class World extends TPanel implements TButtonListener {
         if (s1 == null) break;
         ivVector.addElement(new String(s1));
       } while (true);
-    } catch (Exception exception) {
-      System.out.println("Couldn't read config file sorry... : " + exception);
+    } catch (Exception pException) {
+      System.out.println("Couldn't read config file sorry... : " + pException);
     } finally {
       try {
         ivBufferReader.close();
         ivInputStream.close();
-      } catch (Exception _ex) {}
+      } catch (Exception pException) {
+        System.out.println("Closing buffer threw an exception: " + pException);
+      }
     }
     String s = "https://www.toudal.com/images/";
     for (int i = 0; i < ivVector.size(); i++) {
       for (
-        StringTokenizer stringtokenizer = new StringTokenizer(
+        StringTokenizer lStringTokenizer = new StringTokenizer(
           ivVector.elementAt(i).toString(),
           "\244"
         );
-        stringtokenizer.hasMoreTokens();
+        lStringTokenizer.hasMoreTokens();
       ) try {
-        Image aimage[] = new Image[3];
-        aimage[0] = getImage(s + stringtokenizer.nextToken().trim(), ".gif");
-        aimage[1] = getImage(s + stringtokenizer.nextToken().trim(), ".gif");
-        aimage[2] = getImage(s + stringtokenizer.nextToken().trim(), ".gif");
-        ivImages.addElement(aimage);
+        Image lImage[] = new Image[3];
+        lImage[0] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
+        lImage[1] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
+        lImage[2] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
+        ivImages.addElement(lImage);
         ivPoints[i] =
           new Point(
-            Integer.valueOf(stringtokenizer.nextToken().trim()).intValue(),
-            Integer.valueOf(stringtokenizer.nextToken().trim()).intValue()
+            Integer.valueOf(lStringTokenizer.nextToken().trim()).intValue(),
+            Integer.valueOf(lStringTokenizer.nextToken().trim()).intValue()
           );
         ivListens[i] =
-          (new Boolean(stringtokenizer.nextToken().trim())).booleanValue();
-        ivLabels[i] = stringtokenizer.nextToken().trim();
-        ivUrls[i] = stringtokenizer.nextToken().trim();
-        ivTexts[i] = stringtokenizer.nextToken().trim();
-      } catch (NoSuchElementException _ex) {}
+          (new Boolean(lStringTokenizer.nextToken().trim())).booleanValue();
+        ivLabels[i] = lStringTokenizer.nextToken().trim();
+        ivUrls[i] = lStringTokenizer.nextToken().trim();
+        ivTexts[i] = lStringTokenizer.nextToken().trim();
+      } catch (NoSuchElementException pNoSuchElementException) {
+        System.out.println("Element not found: " + pException);
+      }
     }
   }
 

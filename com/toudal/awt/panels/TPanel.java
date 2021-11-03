@@ -6,7 +6,7 @@ import java.awt.*;
  * ===========================================================================
  * com.toudal.awt.panels
  *
- * Project: toudal.com in Java
+ * Project: www.toudal.com in Java
  *
  * ===========================================================================
  * History:

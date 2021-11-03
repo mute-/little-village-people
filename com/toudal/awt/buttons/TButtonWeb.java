@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
  * ===========================================================================
  * com.toudal.awt.buttons
  *
- * Project: toudal.com in Java
+ * Project: www.toudal.com in Java
  *
  * ===========================================================================
  * History:
@@ -69,7 +69,7 @@ public class TButtonWeb extends TButton {
   /**
    *
    */
-  public TButtonWeb(Image aimage[]) {
+  public TButtonWeb(Image pImage[]) {
     ivCurrentImage = 0;
     ivImage = null;
     ivLabelPoint = new Point(10, 12);
@@ -90,47 +90,47 @@ public class TButtonWeb extends TButton {
   /**
    *
    */
-  public TButtonWeb(Image aimage[], Point point) {
-    this(aimage);
-    ivLabelPoint = point;
+  public TButtonWeb(Image pImage[], Point pPoint) {
+    this(pImage);
+    ivLabelPoint = pPoint;
   }
 
   /**
    *
    */
-  public TButtonWeb(Image aimage[], Point point, String s) {
-    this(aimage, point);
-    ivText = s;
+  public TButtonWeb(Image pImage[], Point pPoint, String pText) {
+    this(pImage, pPoint);
+    ivText = pText;
   }
 
   /**
    *
    */
-  public TButtonWeb(Image aimage[], Point point, String s, Color color) {
-    this(aimage, point, s);
-    ivColor = color;
+  public TButtonWeb(Image pImage[], Point pPoint, String pText, Color pColor) {
+    this(pImage, pPoint, pText);
+    ivColor = pColor;
   }
 
   /**
    *
    */
   public TButtonWeb(
-    Image aimage[],
-    Point point,
-    String s,
-    Color color,
-    Font font
+    Image pImage[],
+    Point pPoint,
+    String pText,
+    Color pColor,
+    Font pFont
   ) {
-    this(aimage, point, s, color);
-    ivFont = font;
+    this(pImage, pPoint, pText, pColor);
+    ivFont = pFont;
   }
 
   /**
    *
    */
-  public void doUpdate(int i, String s, Color color) {
+  public void doUpdate(int i, String pText, Color color) {
     ivCurrentImage = i;
-    ivText = s;
+    ivText = pText;
     ivColor = color;
     if (!ivText.equalsIgnoreCase("")) repaint();
   }
@@ -153,10 +153,10 @@ public class TButtonWeb extends TButton {
    *
    */
   @Override
-  public void mouseEntered(MouseEvent mouseevent) {
+  public void mouseEntered(MouseEvent pMouseEvent) {
     if (ivLabelPoint.x != 0 || ivLabelPoint.y != 0) {
       ivCurrentImage = 1;
-      super.mouseEntered(mouseevent);
+      super.mouseEntered(pMouseEvent);
     }
   }
 
@@ -164,27 +164,27 @@ public class TButtonWeb extends TButton {
    *
    */
   @Override
-  public void mouseExited(MouseEvent mouseevent) {
+  public void mouseExited(MouseEvent pMouseEvent) {
     ivCurrentImage = 0;
-    super.mouseExited(mouseevent);
+    super.mouseExited(pMouseEvent);
   }
 
   /**
    *
    */
   @Override
-  public void mousePressed(MouseEvent mouseevent) {
+  public void mousePressed(MouseEvent pMouseEvent) {
     ivCurrentImage = 2;
-    super.mousePressed(mouseevent);
+    super.mousePressed(pMouseEvent);
   }
 
   /**
    *
    */
   @Override
-  public void mouseReleased(MouseEvent mouseevent) {
+  public void mouseReleased(MouseEvent pMouseEvent) {
     ivCurrentImage = 3;
-    super.mouseReleased(mouseevent);
+    super.mouseReleased(pMouseEvent);
   }
 
   /**
@@ -222,17 +222,17 @@ public class TButtonWeb extends TButton {
   /**
    *
    */
-  public void setDown(boolean flag) {
-    ivDown = flag;
-    if (!flag) ivCurrentImage = 0; else ivCurrentImage = 2;
+  public void setDown(boolean pFlag) {
+    ivDown = pFlag;
+    if (!pFlag) ivCurrentImage = 0; else ivCurrentImage = 2;
     repaint();
   }
 
   /**
    *
    */
-  public void setSticky(boolean flag) {
-    ivSticky = flag;
+  public void setSticky(boolean pFlag) {
+    ivSticky = pFlag;
   }
 
   /**
@@ -281,10 +281,10 @@ public class TButtonWeb extends TButton {
    *
    */
   @Override
-  public void mouseEntered(MouseEvent mouseevent) {
+  public void mouseEntered(MouseEvent pMouseEvent) {
     if (ivLabelPoint.x != 0 || ivLabelPoint.y != 0) {
       ivCurrentImage = 1;
-      super.mouseEntered(mouseevent);
+      super.mouseEntered(pMouseEvent);
     }
   }
 
@@ -292,27 +292,27 @@ public class TButtonWeb extends TButton {
    *
    */
   @Override
-  public void mouseExited(MouseEvent mouseevent) {
+  public void mouseExited(MouseEvent pMouseEvent) {
     ivCurrentImage = 0;
-    super.mouseExited(mouseevent);
+    super.mouseExited(pMouseEvent);
   }
 
   /**
    *
    */
   @Override
-  public void mousePressed(MouseEvent mouseevent) {
+  public void mousePressed(MouseEvent pMouseEvent) {
     ivCurrentImage = 2;
-    super.mousePressed(mouseevent);
+    super.mousePressed(pMouseEvent);
   }
 
   /**
    *
    */
   @Override
-  public void mouseReleased(MouseEvent mouseevent) {
+  public void mouseReleased(MouseEvent pMouseEvent) {
     ivCurrentImage = 3;
-    super.mouseReleased(mouseevent);
+    super.mouseReleased(pMouseEvent);
   }
 
   /**

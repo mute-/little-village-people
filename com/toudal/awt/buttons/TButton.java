@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
  * ===========================================================================
  * com.toudal.awt.buttons
  *
- * Project: toudal.com in Java
+ * Project: www.toudal.com in Java
  *
  * ===========================================================================
  * History:
