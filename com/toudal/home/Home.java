@@ -1,6 +1,7 @@
 package com.toudal.home;
 
-import com.toudal.awt.panels.Slider;
+import com.toudal.awt.*;
+import com.toudal.awt.panels.*;
 import java.applet.Applet;
 import java.awt.*;
 import java.io.IOException;

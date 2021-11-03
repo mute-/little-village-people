@@ -90,7 +90,7 @@ public class Home extends Applet implements ActionListener, Runnable {
 
       repaint();
     } catch (Exception e) {
-      System.out.println("Tallet er ikke gyldigt");
+      System.out.println("The number is not a valid integer");
     }
   }
 
@@ -128,7 +128,12 @@ public class Home extends Applet implements ActionListener, Runnable {
    * @see java.applet.Applet#getAppletInfo()
    */
   public String getAppletInfo() {
-    return "Village\n" + "\n" + "This type was created in VisualAge.\n" + "";
+    return (
+      "Little Village People\n" +
+      "\n" +
+      "This applet was initially created in VisualAge and later merged in Microsoft Visual Studio Code\n" +
+      ""
+    );
   }
 
   /**

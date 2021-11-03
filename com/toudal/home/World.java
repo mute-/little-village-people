@@ -27,7 +27,7 @@ import java.util.*;
  * DESCRIPTION: TOUDAL.WRITEME
  * ===========================================================================
  */
-public class World extends Panel implements ButtonListener {
+public class World extends TPanel implements TButtonListener {
 
   /**
    *
@@ -172,7 +172,7 @@ public class World extends Panel implements ButtonListener {
         ivInputStream.close();
       } catch (Exception _ex) {}
     }
-    String s = "http://www.toudal.com/images/";
+    String s = "https://www.toudal.com/images/";
     for (int i = 0; i < ivVector.size(); i++) {
       for (
         StringTokenizer stringtokenizer = new StringTokenizer(
