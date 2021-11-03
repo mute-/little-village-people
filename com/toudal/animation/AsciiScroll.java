@@ -21,7 +21,7 @@ import java.util.Vector;
  *
  * OCO Source Materials
  *
- * Project: www.toudal.com
+ * Project: www.toudal.com in Java
  *
  * ===========================================================================
  * History:
@@ -371,6 +371,27 @@ public class AsciiScroll extends Applet implements Runnable {
   /**
    * @see java.applet.Applet#start()
    */
+  public void start() {
+    if (null == ivThread) {
+      ivThread = new Thread(this);
+    }
+    ivThread.start();
+  }
+
+  /**
+   * @see java.applet.Applet#stop()
+   */
+  public void stop() {
+    ivThread.stop();
+  }
+
+  /**
+   * @see java.awt.Component#update(Graphics)
+   */
+  public void update(Graphics pGraphics) {
+    paint(pGraphics);
+  }
+}
   public void start() {
     if (null == ivThread) {
       ivThread = new Thread(this);

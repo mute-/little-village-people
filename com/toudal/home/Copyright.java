@@ -2,9 +2,9 @@ package com.toudal.home;
 
 /**
  * ===========================================================================
- * com.toudal.village
+ * com.toudal.home
  *
- * Project: Toudal: Little Village People in Java
+ * Project: www.toudal.com, Little Village People in Java
  *
  * ===========================================================================
  * History:
