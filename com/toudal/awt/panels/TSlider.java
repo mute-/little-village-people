@@ -47,32 +47,32 @@ public class TSlider
     addMouseListener(this);
   }
 
-  public TSlider(boolean flag) {
+  public TSlider(boolean pVertical) {
     this();
-    ivVertical = flag;
+    ivVertical = pVertical;
   }
 
-  public void mouseClicked(MouseEvent mouseevent) {}
+  public void mouseClicked(MouseEvent pMouseEvent) {}
 
-  public void mouseDragged(MouseEvent mouseevent) {
+  public void mouseDragged(MouseEvent pMouseEvent) {
     if (ivMouseDragging) if (ivVertical) {
-      setSliderPos(mouseevent.getPoint().x);
+      setSliderPos(pMouseEvent.getPoint().x);
       placeComponents();
     } else {
-      setSliderPos(mouseevent.getPoint().y);
+      setSliderPos(pMouseEvent.getPoint().y);
       placeComponents();
     }
   }
 
-  public void mouseEntered(MouseEvent mouseevent) {}
+  public void mouseEntered(MouseEvent pMouseEvent) {}
 
-  public void mouseExited(MouseEvent mouseevent) {}
+  public void mouseExited(MouseEvent pMouseEvent) {}
 
-  public void mouseMoved(MouseEvent mouseevent) {}
+  public void mouseMoved(MouseEvent pMouseEvent) {}
 
-  public void mousePressed(MouseEvent mouseevent) {
-    int i = mouseevent.getX();
-    int j = mouseevent.getY();
+  public void mousePressed(MouseEvent pMouseEvent) {
+    int i = pMouseEvent.getX();
+    int j = pMouseEvent.getY();
     if (!ivVertical) {
       if (j > ivSliderPos && j < (ivSliderPos + ivSliderSize) - 2) {
         if (i > 2 && i < ivSliderSize - 2) setSliderPos(0);
@@ -87,11 +87,11 @@ public class TSlider
     ivMouseDragging = true;
   }
 
-  public void mouseReleased(MouseEvent mouseevent) {
+  public void mouseReleased(MouseEvent pMouseEvent) {
     ivMouseDragging = false;
   }
 
-  public void paint(Graphics g) {
+  public void paint(Graphics pGraphics) {
     if (ivImage == null) if (!ivVertical) {
       ivImage = createImage(super.ivWidth, ivSliderSize);
       ivGraphics = ivImage.getGraphics();
@@ -137,7 +137,7 @@ public class TSlider
         );
       }
     }
-    update(g);
+    update(pGraphics);
   }
 
   private void placeComponents() {
@@ -169,82 +169,82 @@ public class TSlider
     }
   }
 
-  public void setComponentDown(Component component) {
+  public void setComponentDown(Component pComponent) {
     if (ivComponentDown != null) {
       ivComponentDown.setVisible(false);
       remove(ivComponentDown);
     }
-    ivComponentDown = component;
-    add(component);
-    component.setVisible(true);
+    ivComponentDown = pComponent;
+    add(pComponent);
+    pComponent.setVisible(true);
     placeComponents();
   }
 
-  public void setComponentLeft(Component component) {
+  public void setComponentLeft(Component pComponent) {
     if (ivComponentLeft != null) {
       ivComponentLeft.setVisible(false);
       remove(ivComponentLeft);
     }
-    ivComponentLeft = component;
+    ivComponentLeft = pComponent;
     add(component);
-    component.setVisible(true);
+    pComponent.setVisible(true);
     placeComponents();
   }
 
-  public void setComponentRight(Component component) {
+  public void setComponentRight(Component pComponent) {
     if (ivComponentRight != null) {
       ivComponentRight.setVisible(false);
       remove(ivComponentRight);
     }
-    ivComponentRight = component;
-    add(component);
-    component.setVisible(true);
+    ivComponentRight = pComponent;
+    add(pComponent);
+    pComponent.setVisible(true);
     placeComponents();
   }
 
-  public void setComponentUp(Component component) {
+  public void setComponentUp(Component pComponent) {
     if (ivComponentUp != null) {
       ivComponentUp.setVisible(false);
       remove(ivComponentUp);
     }
-    ivComponentUp = component;
-    add(component);
-    component.setVisible(true);
+    ivComponentUp = pComponent;
+    add(pComponent);
+    pComponent.setVisible(true);
     placeComponents();
   }
 
-  public void setSliderPos(int i) {
+  public void setSliderPos(int pPosition) {
     ivSliderPos = i;
-    if (i < 0) setSliderPos(0);
+    if (pPosition < 0) setSliderPos(0);
     if (ivVertical) {
-      if (i > super.ivWidth - ivSliderSize) setSliderPos(
+      if (pPosition > super.ivWidth - ivSliderSize) setSliderPos(
         super.ivWidth - ivSliderSize
       );
-    } else if (i > super.ivHeight - ivSliderSize) setSliderPos(
+    } else if (pPosition > super.ivHeight - ivSliderSize) setSliderPos(
       super.ivHeight - ivSliderSize
     );
     placeComponents();
   }
 
-  public void setSliderSize(int i) {
-    ivSliderSize = i;
+  public void setSliderSize(int pSize) {
+    ivSliderSize = pSize;
   }
 
-  public void setSpeedTab(boolean flag) {
-    ivSpeedTab = flag;
+  public void setSpeedTab(boolean pSpeedTab) {
+    ivSpeedTab = pSpeedTab;
   }
 
   protected void sizeChanged() {
     placeComponents();
   }
 
-  public void update(Graphics g) {
-    if (ivVertical) g.drawImage(
+  public void update(Graphics pGraphics) {
+    if (ivVertical) pGraphics.drawImage(
       ivImage,
       ivSliderPos,
       0,
       this
-    ); else g.drawImage(ivImage, 0, ivSliderPos, this);
+    ); else pGraphics.drawImage(ivImage, 0, ivSliderPos, this);
   }
 
   private Component ivComponentLeft;

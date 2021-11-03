@@ -1,6 +1,6 @@
 package com.toudal.awt.buttons;
 
-import com.toudal.awt.CCCanvas;
+import com.toudal.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

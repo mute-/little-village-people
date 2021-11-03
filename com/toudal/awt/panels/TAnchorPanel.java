@@ -29,81 +29,84 @@ public class TAnchorPanel extends TPanel {
    */
   private static final long serialVersionUID = 305222577524167705L;
 
-  public TAnchorPanel(int i, int j) {
+  public TAnchorPanel(int pX, int pY) {
     ivHashTable = new Hashtable();
-    ivWidth = i;
-    ivHeight = j;
+    ivWidth = pX;
+    ivHeight = pY;
     setSize(ivWidth, ivHeight);
   }
 
-  public TAnchorPanel(int i, int j, int k, int l) {
+  public TAnchorPanel(int pX, int pY, int pHeight, int lHeight) {
     ivHashTable = new Hashtable();
-    ivWidth = k;
-    ivHeight = l;
-    setSize(k, l);
-    ivX = i;
-    ivY = j;
+    ivHeight = lHeight;
+    ivWidth = pHeight;
+    setSize(pX, pY);
+    ivX = pX;
+    ivY = pY;
     setLocation(ivX, ivY);
   }
 
   public void add(
-    Component component,
-    boolean flag,
-    boolean flag1,
-    boolean flag2,
-    boolean flag3
+    Component pComponent,
+    boolean pFlag1,
+    boolean pFlag2,
+    boolean pFlag3,
+    boolean pFlag4
   ) {
-    ivHashTable.put(component, new TAnchorPanelInfo(flag, flag1, flag2, flag3));
-    add(component);
+    ivHashTable.put(
+      pComponent,
+      new TAnchorPanelInfo(pFlag1, pFlag2, pFlag3, pFlag4)
+    );
+    add(pComponent);
   }
 
-  public void placeComponents(int i, int j) {
-    Component acomponent[] = getComponents();
-    for (int k = 0; k < acomponent.length; k++) {
+  public void placeComponents(int pX, int pY) {
+    Component lComponent[] = getComponents();
+    for (int k = 0; k < lComponent.length; k++) {
       TAnchorPanelInfo lTAnchorPanelInfo = (TAnchorPanelInfo) ivHashTable.get(
-        acomponent[k]
+        lComponent[k]
       );
       if (lTAnchorPanelInfo != null) {
-        Rectangle rectangle = acomponent[k].getBounds();
+        Rectangle rectangle = lComponent[k].getBounds();
         if (
           lTAnchorPanelInfo.ivAnchorRight && lTAnchorPanelInfo.ivAnchorLeft
         ) rectangle.setSize(
-          rectangle.getSize().width + i,
+          rectangle.getSize().width + pX,
           rectangle.getSize().height
         ); else if (
           lTAnchorPanelInfo.ivAnchorRight && !lTAnchorPanelInfo.ivAnchorLeft
         ) rectangle.setLocation(
-          rectangle.getLocation().x + i,
+          rectangle.getLocation().x + pX,
           rectangle.getLocation().y
         );
         if (
           lTAnchorPanelInfo.ivAnchorTop && lTAnchorPanelInfo.ivAnchorBottom
         ) rectangle.setSize(
           rectangle.getSize().width,
-          rectangle.getSize().height + j
+          rectangle.getSize().height + pY
         ); else if (
           lTAnchorPanelInfo.ivAnchorBottom && !lTAnchorPanelInfo.ivAnchorTop
         ) rectangle.setLocation(
           rectangle.getLocation().x,
-          rectangle.getLocation().y + j
+          rectangle.getLocation().y + pY
         );
-        acomponent[k].setBounds(rectangle);
+        lComponent[k].setBounds(rectangle);
       }
     }
 
-    ivWidth += i;
-    ivHeight += j;
+    ivWidth += pX;
+    ivHeight += pY;
   }
 
-  public void remove(Component component) {
-    super.remove(component);
-    ivHashTable.remove(component);
+  public void remove(Component pComponent) {
+    super.remove(pComponent);
+    ivHashTable.remove(pComponent);
   }
 
   public void sizeChanged() {}
 
-  public void sizeChanged(int i, int j) {
-    placeComponents(i - ivWidth, j - ivHeight);
+  public void sizeChanged(int pX, int pY) {
+    placeComponents(pX - ivWidth, pY - ivHeight);
   }
 
   private Hashtable ivHashTable;

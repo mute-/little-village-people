@@ -54,71 +54,71 @@ public abstract class TCanvas extends Canvas {
     }
   }
 
-  public Image getImage(String s) {
-    Image image = (Image) ivHashtable.get(s);
+  public Image getImage(String pImagePath) {
+    Image image = (Image) ivHashtable.get(pImagePath);
     if (image == null) {
       try {
-        System.out.println(s);
+        System.out.println(pImagePath);
         MediaTracker mediatracker = new MediaTracker(this);
-        URL url = new URL(s);
+        URL url = new URL(pImagePath);
         image = Toolkit.getDefaultToolkit().getImage(url);
         mediatracker.addImage(image, 0);
         mediatracker.waitForAll();
         mediatracker.removeImage(image);
         url.openConnection();
-      } catch (Exception exception) {
-        exception.printStackTrace();
+      } catch (Exception pException) {
+        pException.printStackTrace();
       }
       if (image == null) {
         image = createImage(10, 10);
         image.getGraphics().setColor(Color.black);
         image.getGraphics().drawString("NO Image", 10, 20);
       }
-      ivHashtable.put(s, image);
+      ivHashtable.put(pImagePath, image);
     }
     return image;
   }
 
   protected abstract void paint();
 
-  public void paint(Graphics g) {
+  public void paint(Graphics pGraphics) {
     if (ivImage == null) createOffImage();
-    update(g);
+    update(pGraphics);
   }
 
-  public void removeImage(String s) {
-    ivHashtable.remove(s);
+  public void removeImage(String pImagePath) {
+    ivHashtable.remove(pImagePath);
   }
 
-  public void setBounds(int i, int j, int k, int l) {
-    super.setBounds(i, j, k, l);
-    ivHeight = l;
-    ivWidth = k;
+  public void setBounds(int pX, int pY, int pHeight, int lHeight) {
+    super.setBounds(pX, pY, pHeight, lHeight);
+    ivHeight = lHeight;
+    ivWidth = pHeight;
     createOffImage();
     sizeChanged();
   }
 
-  public void setSize(int i, int j) {
-    super.setSize(i, j);
-    ivHeight = j;
-    ivWidth = i;
+  public void setSize(int pX, int pY) {
+    super.setSize(pX, pY);
+    ivWidth = pX;
+    ivHeight = pY;
     createOffImage();
     sizeChanged();
   }
 
-  public void setSize(Dimension dimension) {
-    super.setSize(dimension);
-    ivHeight = dimension.height;
-    ivWidth = dimension.width;
+  public void setSize(Dimension pDimension) {
+    super.setSize(pDimension);
+    ivHeight = pDimension.height;
+    ivWidth = pDimension.width;
     createOffImage();
     sizeChanged();
   }
 
   protected abstract void sizeChanged();
 
-  public void update(Graphics g) {
+  public void update(Graphics pGraphics) {
     if (ivGraphics != null) paint();
-    if (ivImage != null) g.drawImage(ivImage, 0, 0, this);
+    if (ivImage != null) pGraphics.drawImage(ivImage, 0, 0, this);
   }
 
   private static Hashtable ivHashtable = new Hashtable();

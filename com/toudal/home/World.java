@@ -1,7 +1,7 @@
 package com.toudal.home;
 
 import com.toudal.awt.buttons.*;
-import com.toudal.awt.panels.AnchorPanel;
+import com.toudal.awt.panels.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;

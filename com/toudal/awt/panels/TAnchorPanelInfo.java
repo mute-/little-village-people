@@ -22,19 +22,19 @@ package com.toudal.awt.panels;
 public class TAnchorPanelInfo {
 
   public TAnchorPanelInfo(
-    boolean flag,
-    boolean flag1,
-    boolean flag2,
-    boolean flag3
+    boolean pFlag1,
+    boolean pFlag2,
+    boolean pFlag3,
+    boolean pFlag4
   ) {
     ivAnchorTop = false;
     ivAnchorRight = false;
     ivAnchorLeft = false;
     ivAnchorBottom = false;
-    ivAnchorTop = flag;
-    ivAnchorRight = flag1;
-    ivAnchorLeft = flag2;
-    ivAnchorBottom = flag3;
+    ivAnchorTop = pFlag1;
+    ivAnchorRight = pFlag2;
+    ivAnchorLeft = pFlag3;
+    ivAnchorBottom = pFlag4;
   }
 
   boolean ivAnchorTop;

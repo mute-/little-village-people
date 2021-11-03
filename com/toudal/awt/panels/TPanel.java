@@ -34,24 +34,24 @@ public abstract class TPanel extends Panel {
     setLayout(null);
   }
 
-  public void setBounds(int i, int j, int k, int l) {
-    super.setBounds(i, j, k, l);
-    ivWidth = k;
-    ivHeight = l;
+  public void setBounds(int pX, int pY, int pHeight, int lHeight) {
+    super.setBounds(pX, pY, pHeight, lHeight);
+    ivHeight = lHeight;
+    ivWidth = pHeight;
     sizeChanged();
   }
 
-  public void setSize(int i, int j) {
-    super.setSize(i, j);
-    ivWidth = i;
-    ivHeight = j;
+  public void setSize(int pX, int pY) {
+    super.setSize(pX, pY);
+    ivWidth = pX;
+    ivHeight = pY;
     sizeChanged();
   }
 
-  public void setSize(Dimension dimension) {
-    super.setSize(dimension);
-    ivHeight = dimension.height;
-    ivWidth = dimension.width;
+  public void setSize(Dimension pDimension) {
+    super.setSize(pDimension);
+    ivHeight = pDimension.height;
+    ivWidth = pDimension.width;
     sizeChanged();
   }
 
