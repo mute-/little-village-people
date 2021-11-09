@@ -1,6 +1,6 @@
 package com.toudal.home;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.home
  *
@@ -21,8 +21,8 @@ package com.toudal.home;
  */
 public class Copyright {
 
-  public Copyright() {}
+  public Copyright() {
+  }
 
-  public static final String COPYRIGHT =
-    "\n\nLicensed Materials - Property of Our World\nPackage: com.toudal.*\n\251 Copyright Toudal Corp. 1998, 2021. All Rights Reserved.\n";
+  public static final String COPYRIGHT = "\n\nLicensed Materials - Property of Our World\nPackage: com.toudal.*\n\251 Copyright Toudal Corp. 1998, 2021. All Rights Reserved.\n";
 }

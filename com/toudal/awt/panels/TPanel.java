@@ -2,7 +2,7 @@ package com.toudal.awt.panels;
 
 import java.awt.*;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt.panels
  *

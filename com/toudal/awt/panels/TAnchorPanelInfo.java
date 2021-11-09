@@ -1,6 +1,6 @@
 package com.toudal.awt.panels;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt.panels
  *
@@ -21,12 +21,7 @@ package com.toudal.awt.panels;
  */
 public class TAnchorPanelInfo {
 
-  public TAnchorPanelInfo(
-    boolean pFlag1,
-    boolean pFlag2,
-    boolean pFlag3,
-    boolean pFlag4
-  ) {
+  public TAnchorPanelInfo(boolean pFlag1, boolean pFlag2, boolean pFlag3, boolean pFlag4) {
     ivAnchorTop = false;
     ivAnchorRight = false;
     ivAnchorLeft = false;

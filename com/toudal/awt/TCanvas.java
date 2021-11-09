@@ -4,7 +4,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.Hashtable;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt
  *
@@ -74,7 +74,7 @@ public abstract class TCanvas extends Canvas {
         image.getGraphics().setColor(Color.black);
         image.getGraphics().drawString("NO Image", 10, 20);
       }
-      ivHashtable.put(s, image);
+      ivHashtable.put(pString, image);
     }
     return image;
   }
@@ -82,7 +82,8 @@ public abstract class TCanvas extends Canvas {
   protected abstract void paint();
 
   public void paint(Graphics pGraphics) {
-    if (ivImage == null) createOffImage();
+    if (ivImage == null)
+      createOffImage();
     update(pGraphics);
   }
 
@@ -117,8 +118,10 @@ public abstract class TCanvas extends Canvas {
   protected abstract void sizeChanged();
 
   public void update(Graphics pGraphics) {
-    if (ivGraphics != null) paint();
-    if (ivImage != null) pGraphics.drawImage(ivImage, 0, 0, this);
+    if (ivGraphics != null)
+      paint();
+    if (ivImage != null)
+      pGraphics.drawImage(ivImage, 0, 0, this);
   }
 
   private static Hashtable ivHashtable = new Hashtable();

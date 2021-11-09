@@ -3,7 +3,7 @@ package com.toudal.village;
 // import java
 import java.awt.*;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.village
  *
@@ -88,25 +88,18 @@ public class Human {
    */
   public void drawHuman() {
     ivHome.ivOffGraphics.setColor(ivColor);
-    if (!cvDead) ivHome.ivOffGraphics.fillOval(
-      new Double(ivPosX * ivHome.ivXFactor).intValue(),
-      new Double(ivPosY * ivHome.ivYFactor).intValue(),
-      new Double(1 * ivHome.ivXFactor).intValue(),
-      new Double(1 * ivHome.ivYFactor).intValue()
-    ); else {
-      ivHome.ivOffGraphics.drawLine(
-        new Double(ivPosX * ivHome.ivXFactor).intValue(),
-        new Double(ivPosY * ivHome.ivYFactor).intValue(),
-        new Double((ivPosX + 1) * ivHome.ivXFactor).intValue(),
-        new Double((ivPosY + 1) * ivHome.ivYFactor).intValue()
-      );
+    if (!cvDead)
+      ivHome.ivOffGraphics.fillOval(new Double(ivPosX * ivHome.ivXFactor).intValue(),
+          new Double(ivPosY * ivHome.ivYFactor).intValue(), new Double(1 * ivHome.ivXFactor).intValue(),
+          new Double(1 * ivHome.ivYFactor).intValue());
+    else {
+      ivHome.ivOffGraphics.drawLine(new Double(ivPosX * ivHome.ivXFactor).intValue(),
+          new Double(ivPosY * ivHome.ivYFactor).intValue(), new Double((ivPosX + 1) * ivHome.ivXFactor).intValue(),
+          new Double((ivPosY + 1) * ivHome.ivYFactor).intValue());
 
-      ivHome.ivOffGraphics.drawLine(
-        new Double((ivPosX + 1) * ivHome.ivXFactor).intValue(),
-        new Double(ivPosY * ivHome.ivYFactor).intValue(),
-        new Double(ivPosX * ivHome.ivXFactor).intValue(),
-        new Double((ivPosY + 1) * ivHome.ivYFactor).intValue()
-      );
+      ivHome.ivOffGraphics.drawLine(new Double((ivPosX + 1) * ivHome.ivXFactor).intValue(),
+          new Double(ivPosY * ivHome.ivYFactor).intValue(), new Double(ivPosX * ivHome.ivXFactor).intValue(),
+          new Double((ivPosY + 1) * ivHome.ivYFactor).intValue());
     }
   }
 
@@ -123,26 +116,36 @@ public class Human {
     if (String.valueOf(ivSex).equalsIgnoreCase("k") && isSoveSal) {
       ivFresh = ivFresh + 1;
 
-      if (valg == 1) ivDirection = ivDirection - 1; else ivDirection =
-        ivDirection + 1;
+      if (valg == 1)
+        ivDirection = ivDirection - 1;
+      else
+        ivDirection = ivDirection + 1;
     } else if (ivTired && isSoveSal) {
       ivFresh = ivFresh + 1;
 
-      if (valg == 1) ivDirection = ivDirection - 1; else ivDirection =
-        ivDirection + 1;
+      if (valg == 1)
+        ivDirection = ivDirection - 1;
+      else
+        ivDirection = ivDirection + 1;
     } else {
-      if (valg == 1) ivDirection = ivDirection - 1; else if (
-        valg == 2
-      ) ivDirection = ivDirection + 1;
+      if (valg == 1)
+        ivDirection = ivDirection - 1;
+      else if (valg == 2)
+        ivDirection = ivDirection + 1;
     }
 
-    if (ivDirection < 1) ivDirection = 8 - ivDirection;
-    if (ivDirection > 8) ivDirection = ivDirection - 8;
+    if (ivDirection < 1)
+      ivDirection = 8 - ivDirection;
+    if (ivDirection > 8)
+      ivDirection = ivDirection - 8;
 
-    if (ivTired || isSoveSal) ivMsek = 1; else ivMsek = 2;
+    if (ivTired || isSoveSal)
+      ivMsek = 1;
+    else
+      ivMsek = 2;
 
     if (ivDirection == 1) {
-      //ivPosX = ivPosX;
+      // ivPosX = ivPosX;
       ivPosY = ivPosY - ivMsek;
     }
 
@@ -153,7 +156,7 @@ public class Human {
 
     if (ivDirection == 3) {
       ivPosX = ivPosX + ivMsek;
-      //ivPosY = ivPosY;
+      // ivPosY = ivPosY;
     }
 
     if (ivDirection == 4) {
@@ -162,7 +165,7 @@ public class Human {
     }
 
     if (ivDirection == 5) {
-      //ivPosX = ivPosX;
+      // ivPosX = ivPosX;
       ivPosY = ivPosY + ivMsek;
     }
 
@@ -173,7 +176,7 @@ public class Human {
 
     if (ivDirection == 7) {
       ivPosX = ivPosX - ivMsek;
-      //ivPosY = ivPosY;
+      // ivPosY = ivPosY;
     }
 
     if (ivDirection == 8) {
@@ -210,7 +213,8 @@ public class Human {
     }
 
     if (!cvDead) {
-      if (ivMap.amIDead(ivPosX, ivPosY)) drawDead();
+      if (ivMap.amIDead(ivPosX, ivPosY))
+        drawDead();
     }
   }
 }

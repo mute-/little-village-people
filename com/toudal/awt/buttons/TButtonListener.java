@@ -2,7 +2,7 @@ package com.toudal.awt.buttons;
 
 import java.awt.event.MouseEvent;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt.buttons
  *

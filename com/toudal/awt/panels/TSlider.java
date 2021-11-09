@@ -3,7 +3,7 @@ package com.toudal.awt.panels;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt.panels
  *
@@ -22,9 +22,7 @@ import java.awt.event.*;
  * DESCRIPTION: TOUDAL.WRITEME
  * ===========================================================================
  */
-public class TSlider
-  extends TPanel
-  implements MouseListener, MouseMotionListener {
+public class TSlider extends TPanel implements MouseListener, MouseMotionListener {
 
   /**
    *
@@ -52,37 +50,44 @@ public class TSlider
     ivVertical = pVertical;
   }
 
-  public void mouseClicked(MouseEvent pMouseEvent) {}
-
-  public void mouseDragged(MouseEvent pMouseEvent) {
-    if (ivMouseDragging) if (ivVertical) {
-      setSliderPos(pMouseEvent.getPoint().x);
-      placeComponents();
-    } else {
-      setSliderPos(pMouseEvent.getPoint().y);
-      placeComponents();
-    }
+  public void mouseClicked(MouseEvent pMouseEvent) {
   }
 
-  public void mouseEntered(MouseEvent pMouseEvent) {}
+  public void mouseDragged(MouseEvent pMouseEvent) {
+    if (ivMouseDragging)
+      if (ivVertical) {
+        setSliderPos(pMouseEvent.getPoint().x);
+        placeComponents();
+      } else {
+        setSliderPos(pMouseEvent.getPoint().y);
+        placeComponents();
+      }
+  }
 
-  public void mouseExited(MouseEvent pMouseEvent) {}
+  public void mouseEntered(MouseEvent pMouseEvent) {
+  }
 
-  public void mouseMoved(MouseEvent pMouseEvent) {}
+  public void mouseExited(MouseEvent pMouseEvent) {
+  }
+
+  public void mouseMoved(MouseEvent pMouseEvent) {
+  }
 
   public void mousePressed(MouseEvent pMouseEvent) {
     int i = pMouseEvent.getX();
     int j = pMouseEvent.getY();
     if (!ivVertical) {
       if (j > ivSliderPos && j < (ivSliderPos + ivSliderSize) - 2) {
-        if (i > 2 && i < ivSliderSize - 2) setSliderPos(0);
-        if (i > ivSliderSize && i < ivSliderSize * 2) setSliderPos(
-          super.ivHeight - (ivSliderSize + 5)
-        );
+        if (i > 2 && i < ivSliderSize - 2)
+          setSliderPos(0);
+        if (i > ivSliderSize && i < ivSliderSize * 2)
+          setSliderPos(super.ivHeight - (ivSliderSize + 5));
       }
     } else if (i > ivSliderPos && i < (ivSliderPos + ivSliderSize) - 2) {
-      if (j > 2 && j < 12) setSliderPos(0);
-      if (j > 14 && j < 26) setSliderPos(super.ivWidth - (ivSliderSize + 5));
+      if (j > 2 && j < 12)
+        setSliderPos(0);
+      if (j > 14 && j < 26)
+        setSliderPos(super.ivWidth - (ivSliderSize + 5));
     }
     ivMouseDragging = true;
   }
@@ -92,80 +97,49 @@ public class TSlider
   }
 
   public void paint(Graphics pGraphics) {
-    if (ivImage == null) if (!ivVertical) {
-      ivImage = createImage(super.ivWidth, ivSliderSize);
-      ivGraphics = ivImage.getGraphics();
-      ivGraphics.setColor(getBackground().darker());
-      ivGraphics.fillRect(0, 0, super.ivWidth, ivSliderSize);
-      ivGraphics.setColor(getBackground().brighter());
-      for (int i = 0; i < super.ivWidth; i += 2) ivGraphics.drawLine(
-        i,
-        0,
-        i,
-        ivSliderSize
-      );
+    if (ivImage == null)
+      if (!ivVertical) {
+        ivImage = createImage(super.ivWidth, ivSliderSize);
+        ivGraphics = ivImage.getGraphics();
+        ivGraphics.setColor(getBackground().darker());
+        ivGraphics.fillRect(0, 0, super.ivWidth, ivSliderSize);
+        ivGraphics.setColor(getBackground().brighter());
+        for (int i = 0; i < super.ivWidth; i += 2)
+          ivGraphics.drawLine(i, 0, i, ivSliderSize);
 
-      if (ivSpeedTab) {
-        ivGraphics.fillRect(2, 1, ivSliderSize - 2, ivSliderSize - 2);
-        ivGraphics.fillRect(
-          ivSliderSize,
-          1,
-          ivSliderSize - 2,
-          ivSliderSize - 2
-        );
-      }
-    } else {
-      ivImage = createImage(ivSliderSize, super.ivHeight);
-      ivGraphics = ivImage.getGraphics();
-      ivGraphics.setColor(getBackground().darker());
-      ivGraphics.fillRect(0, 0, ivSliderSize, super.ivHeight);
-      ivGraphics.setColor(getBackground().brighter());
-      for (int j = 0; j < super.ivHeight; j += 2) ivGraphics.drawLine(
-        0,
-        j,
-        ivSliderSize,
-        j
-      );
+        if (ivSpeedTab) {
+          ivGraphics.fillRect(2, 1, ivSliderSize - 2, ivSliderSize - 2);
+          ivGraphics.fillRect(ivSliderSize, 1, ivSliderSize - 2, ivSliderSize - 2);
+        }
+      } else {
+        ivImage = createImage(ivSliderSize, super.ivHeight);
+        ivGraphics = ivImage.getGraphics();
+        ivGraphics.setColor(getBackground().darker());
+        ivGraphics.fillRect(0, 0, ivSliderSize, super.ivHeight);
+        ivGraphics.setColor(getBackground().brighter());
+        for (int j = 0; j < super.ivHeight; j += 2)
+          ivGraphics.drawLine(0, j, ivSliderSize, j);
 
-      if (ivSpeedTab) {
-        ivGraphics.fillRect(1, 2, ivSliderSize - 2, ivSliderSize - 2);
-        ivGraphics.fillRect(
-          1,
-          ivSliderSize,
-          ivSliderSize - 2,
-          ivSliderSize - 2
-        );
+        if (ivSpeedTab) {
+          ivGraphics.fillRect(1, 2, ivSliderSize - 2, ivSliderSize - 2);
+          ivGraphics.fillRect(1, ivSliderSize, ivSliderSize - 2, ivSliderSize - 2);
+        }
       }
-    }
     update(pGraphics);
   }
 
   private void placeComponents() {
     if (super.ivWidth > 0 && super.ivHeight > 0) {
-      if (ivComponentLeft != null) ivComponentLeft.setBounds(
-        0,
-        0,
-        ivSliderPos,
-        super.ivHeight
-      );
-      if (ivComponentRight != null) ivComponentRight.setBounds(
-        ivSliderPos + ivSliderSize,
-        0,
-        super.ivWidth - ivSliderPos - ivSliderSize,
-        super.ivHeight
-      );
-      if (ivComponentUp != null) ivComponentUp.setBounds(
-        0,
-        0,
-        super.ivWidth,
-        ivSliderPos
-      );
-      if (ivComponentDown != null) ivComponentDown.setBounds(
-        0,
-        ivSliderPos + ivSliderSize,
-        super.ivWidth,
-        super.ivHeight - ivSliderPos - ivSliderSize
-      );
+      if (ivComponentLeft != null)
+        ivComponentLeft.setBounds(0, 0, ivSliderPos, super.ivHeight);
+      if (ivComponentRight != null)
+        ivComponentRight.setBounds(ivSliderPos + ivSliderSize, 0, super.ivWidth - ivSliderPos - ivSliderSize,
+            super.ivHeight);
+      if (ivComponentUp != null)
+        ivComponentUp.setBounds(0, 0, super.ivWidth, ivSliderPos);
+      if (ivComponentDown != null)
+        ivComponentDown.setBounds(0, ivSliderPos + ivSliderSize, super.ivWidth,
+            super.ivHeight - ivSliderPos - ivSliderSize);
     }
   }
 
@@ -186,7 +160,7 @@ public class TSlider
       remove(ivComponentLeft);
     }
     ivComponentLeft = pComponent;
-    add(component);
+    add(pComponent);
     pComponent.setVisible(true);
     placeComponents();
   }
@@ -214,15 +188,14 @@ public class TSlider
   }
 
   public void setSliderPos(int pPosition) {
-    ivSliderPos = i;
-    if (pPosition < 0) setSliderPos(0);
+    ivSliderPos = pPosition;
+    if (pPosition < 0)
+      setSliderPos(0);
     if (ivVertical) {
-      if (pPosition > super.ivWidth - ivSliderSize) setSliderPos(
-        super.ivWidth - ivSliderSize
-      );
-    } else if (pPosition > super.ivHeight - ivSliderSize) setSliderPos(
-      super.ivHeight - ivSliderSize
-    );
+      if (pPosition > super.ivWidth - ivSliderSize)
+        setSliderPos(super.ivWidth - ivSliderSize);
+    } else if (pPosition > super.ivHeight - ivSliderSize)
+      setSliderPos(super.ivHeight - ivSliderSize);
     placeComponents();
   }
 
@@ -239,12 +212,10 @@ public class TSlider
   }
 
   public void update(Graphics pGraphics) {
-    if (ivVertical) pGraphics.drawImage(
-      ivImage,
-      ivSliderPos,
-      0,
-      this
-    ); else pGraphics.drawImage(ivImage, 0, ivSliderPos, this);
+    if (ivVertical)
+      pGraphics.drawImage(ivImage, ivSliderPos, 0, this);
+    else
+      pGraphics.drawImage(ivImage, 0, ivSliderPos, this);
   }
 
   private Component ivComponentLeft;

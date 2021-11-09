@@ -4,7 +4,7 @@ import com.toudal.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt.buttons
  *
@@ -39,35 +39,32 @@ public abstract class TButton extends TCanvas implements MouseListener {
   }
 
   public void mouseClicked(MouseEvent pMouseEvent) {
-    if (ivTButtonListener != null) ivTButtonListener.ccButtonClicked(
-      pMouseEvent
-    );
+    if (ivTButtonListener != null)
+      ivTButtonListener.TButtonClicked(pMouseEvent);
     repaint();
   }
 
   public void mouseEntered(MouseEvent pMouseEvent) {
-    if (ivTButtonListener != null) ivTButtonListener.TButtonEntered(
-      pMouseEvent
-    );
+    if (ivTButtonListener != null)
+      ivTButtonListener.TButtonEntered(pMouseEvent);
     repaint();
   }
 
   public void mouseExited(MouseEvent pMouseEvent) {
-    if (ivTButtonListener != null) ivTButtonListener.TButtonExited(pMouseEvent);
+    if (ivTButtonListener != null)
+      ivTButtonListener.TButtonExited(pMouseEvent);
     repaint();
   }
 
   public void mousePressed(MouseEvent pMouseEvent) {
-    if (ivTButtonListener != null) ivTButtonListener.TButtonPressed(
-      pMouseEvent
-    );
+    if (ivTButtonListener != null)
+      ivTButtonListener.TButtonPressed(pMouseEvent);
     repaint();
   }
 
   public void mouseReleased(MouseEvent pMouseEvent) {
-    if (ivTButtonListener != null) ivTButtonListener.TButtonReleased(
-      pMouseEvent
-    );
+    if (ivTButtonListener != null)
+      ivTButtonListener.TButtonReleased(pMouseEvent);
     repaint();
   }
 

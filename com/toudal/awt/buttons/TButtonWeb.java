@@ -3,7 +3,7 @@ package com.toudal.awt.buttons;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.awt.buttons
  *
@@ -45,8 +45,6 @@ public class TButtonWeb extends TButton {
 
   private Font ivFont;
 
-  private int ivHeight;
-
   private Image ivImage[];
 
   private Point ivImagePoint;
@@ -56,8 +54,6 @@ public class TButtonWeb extends TButton {
   private boolean ivSticky;
 
   private String ivText;
-
-  private int ivWidth;
 
   /**
    *
@@ -81,9 +77,9 @@ public class TButtonWeb extends TButton {
     ivHeight = 0;
     ivDown = false;
     ivSticky = false;
-    ivImage = aimage;
-    ivWidth = aimage[0].getWidth(this);
-    ivHeight = aimage[0].getHeight(this);
+    ivImage = pImage;
+    ivWidth = pImage[0].getWidth(this);
+    ivHeight = pImage[0].getHeight(this);
     ivCurrentImage = 0;
   }
 
@@ -114,13 +110,7 @@ public class TButtonWeb extends TButton {
   /**
    *
    */
-  public TButtonWeb(
-    Image pImage[],
-    Point pPoint,
-    String pText,
-    Color pColor,
-    Font pFont
-  ) {
+  public TButtonWeb(Image pImage[], Point pPoint, String pText, Color pColor, Font pFont) {
     this(pImage, pPoint, pText, pColor);
     ivFont = pFont;
   }
@@ -132,7 +122,8 @@ public class TButtonWeb extends TButton {
     ivCurrentImage = i;
     ivText = pText;
     ivColor = pColor;
-    if (!ivText.equalsIgnoreCase("")) repaint();
+    if (!ivText.equalsIgnoreCase(""))
+      repaint();
   }
 
   /**
@@ -195,27 +186,22 @@ public class TButtonWeb extends TButton {
     super.ivGraphics.setColor(ivColor);
     super.ivGraphics.setFont(ivFont);
     switch (ivCurrentImage) {
-      case 0: // '\0'
-        super.ivGraphics.drawImage(ivImage[0], 0, 0, this);
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-      case 1: // '\001'
-        super.ivGraphics.drawImage(
-          ivImage[1],
-          ivImagePoint.x,
-          ivImagePoint.y,
-          this
-        );
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-      case 2: // '\002'
-        super.ivGraphics.drawImage(ivImage[1], 0, 0, this);
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
-      case 3: // '\003'
-        super.ivGraphics.drawImage(ivImage[2], 0, 0, this);
-        super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
-        return;
+    case 0: // '\0'
+      super.ivGraphics.drawImage(ivImage[0], 0, 0, this);
+      super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
+      return;
+    case 1: // '\001'
+      super.ivGraphics.drawImage(ivImage[1], ivImagePoint.x, ivImagePoint.y, this);
+      super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
+      return;
+    case 2: // '\002'
+      super.ivGraphics.drawImage(ivImage[1], 0, 0, this);
+      super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
+      return;
+    case 3: // '\003'
+      super.ivGraphics.drawImage(ivImage[2], 0, 0, this);
+      super.ivGraphics.drawString(ivText, ivLabelPoint.x, ivLabelPoint.y);
+      return;
     }
   }
 
@@ -224,7 +210,10 @@ public class TButtonWeb extends TButton {
    */
   public void setDown(boolean pFlag) {
     ivDown = pFlag;
-    if (!pFlag) ivCurrentImage = 0; else ivCurrentImage = 2;
+    if (!pFlag)
+      ivCurrentImage = 0;
+    else
+      ivCurrentImage = 2;
     repaint();
   }
 

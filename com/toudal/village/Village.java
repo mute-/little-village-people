@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.village
  *
@@ -98,9 +98,7 @@ public class Home extends Applet implements ActionListener, Runnable {
    *
    */
   public void decNoMen() {
-    String str = String.valueOf(
-      new Integer(ivLabelMPeople.getText()).intValue() - 1
-    );
+    String str = String.valueOf(new Integer(ivLabelMPeople.getText()).intValue() - 1);
     ivLabelMPeople.setText(str);
   }
 
@@ -108,9 +106,7 @@ public class Home extends Applet implements ActionListener, Runnable {
    *
    */
   public void decNoTired() {
-    String str = String.valueOf(
-      new Integer(ivLabelTPeople.getText()).intValue() - 1
-    );
+    String str = String.valueOf(new Integer(ivLabelTPeople.getText()).intValue() - 1);
     ivLabelTPeople.setText(str);
   }
 
@@ -118,9 +114,7 @@ public class Home extends Applet implements ActionListener, Runnable {
    *
    */
   public void decNoWomen() {
-    String str = String.valueOf(
-      new Integer(ivLabelWPeople.getText()).intValue() - 1
-    );
+    String str = String.valueOf(new Integer(ivLabelWPeople.getText()).intValue() - 1);
     ivLabelWPeople.setText(str);
   }
 
@@ -128,21 +122,15 @@ public class Home extends Applet implements ActionListener, Runnable {
    * @see java.applet.Applet#getAppletInfo()
    */
   public String getAppletInfo() {
-    return (
-      "Little Village People\n" +
-      "\n" +
-      "This applet was initially created in VisualAge and later merged in Microsoft Visual Studio Code\n" +
-      ""
-    );
+    return ("Little Village People\n" + "\n"
+        + "This applet was initially created in VisualAge and later merged in Microsoft Visual Studio Code\n" + "");
   }
 
   /**
    *
    */
   public void incNoMen() {
-    String str = String.valueOf(
-      new Integer(ivLabelMPeople.getText()).intValue() + 1
-    );
+    String str = String.valueOf(new Integer(ivLabelMPeople.getText()).intValue() + 1);
     ivLabelMPeople.setText(str);
   }
 
@@ -150,9 +138,7 @@ public class Home extends Applet implements ActionListener, Runnable {
    *
    */
   public void incNoTired() {
-    String str = String.valueOf(
-      new Integer(ivLabelTPeople.getText()).intValue() + 1
-    );
+    String str = String.valueOf(new Integer(ivLabelTPeople.getText()).intValue() + 1);
     ivLabelTPeople.setText(str);
   }
 
@@ -160,9 +146,7 @@ public class Home extends Applet implements ActionListener, Runnable {
    *
    */
   public void incNoWomen() {
-    String str = String.valueOf(
-      new Integer(ivLabelWPeople.getText()).intValue() + 1
-    );
+    String str = String.valueOf(new Integer(ivLabelWPeople.getText()).intValue() + 1);
     ivLabelWPeople.setText(str);
   }
 
@@ -213,14 +197,11 @@ public class Home extends Applet implements ActionListener, Runnable {
     ivOffHeight = getSize().height - 20;
 
     /*
-		This works:
-		offImage    = createImage(xx, yy);
-		offGraphics = offImage.getGraphics();
-		offGraphics.drawEtEllerAndet...
-		
-		This does not work with colors
-		offImage.getGraphics().drawEtEllerAndet...
-		*/
+     * This works: offImage = createImage(xx, yy); offGraphics =
+     * offImage.getGraphics(); offGraphics.drawEtEllerAndet...
+     * 
+     * This does not work with colors offImage.getGraphics().drawEtEllerAndet...
+     */
 
     ivOffImage = this.createImage(ivOffWidth, ivOffHeight);
     ivOffGraphics = ivOffImage.getGraphics();
@@ -273,7 +254,8 @@ public class Home extends Applet implements ActionListener, Runnable {
 
         repaint();
       }
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
   /**

@@ -15,11 +15,9 @@ import java.net.URL;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.animaition.AsciiScroll.java
- *
- * OCO Source Materials
  *
  * Project: www.toudal.com in Java
  *
@@ -28,9 +26,9 @@ import java.util.Vector;
  *
  * Version  Date        User  Comment
  * -------  ----------  ----  -----------------------------------------------
- *   1.0.0  16-09-2001   MST  Initial version
- *   1.0.1  24-03-2003   MST  Source updated for SUN Java 1.4.1
- *   1.0.2  03-11-2021   MST  Committed to Git
+ * 1.0.0 16-09-2001 MST Initial
+ * 1.0.1 24-03-2003 MST Source updated for SUN Java 1.4.1 1.0.2
+ * 03-11-2021 MST Committed to Git
  *
  * ===========================================================================
  * Module Information:
@@ -131,10 +129,7 @@ public class AsciiScroll extends Applet implements Runnable {
     }
 
     if (null != getParameter("bgcolor")) {
-      StringTokenizer tokenizer = new StringTokenizer(
-        getParameter("bgcolor"),
-        ","
-      );
+      StringTokenizer tokenizer = new StringTokenizer(getParameter("bgcolor"), ",");
       int red = Integer.parseInt(tokenizer.nextToken());
       int green = Integer.parseInt(tokenizer.nextToken());
       int blue = Integer.parseInt(tokenizer.nextToken());
@@ -142,10 +137,7 @@ public class AsciiScroll extends Applet implements Runnable {
     }
 
     if (null != getParameter("textcolor")) {
-      StringTokenizer tokenizer = new StringTokenizer(
-        getParameter("textcolor"),
-        ","
-      );
+      StringTokenizer tokenizer = new StringTokenizer(getParameter("textcolor"), ",");
       int red = Integer.parseInt(tokenizer.nextToken());
       int green = Integer.parseInt(tokenizer.nextToken());
       int blue = Integer.parseInt(tokenizer.nextToken());
@@ -153,10 +145,7 @@ public class AsciiScroll extends Applet implements Runnable {
     }
 
     if (null != getParameter("hilite")) {
-      StringTokenizer tokenizer = new StringTokenizer(
-        getParameter("hilite"),
-        ","
-      );
+      StringTokenizer tokenizer = new StringTokenizer(getParameter("hilite"), ",");
       int red = Integer.parseInt(tokenizer.nextToken());
       int green = Integer.parseInt(tokenizer.nextToken());
       int blue = Integer.parseInt(tokenizer.nextToken());
@@ -192,7 +181,7 @@ public class AsciiScroll extends Applet implements Runnable {
    * @deprecated
    */
   public boolean mouseEnter(Event pEvent, int pX, int pY) {
-    //stop();
+    // stop();
     ivMouseOver = true;
 
     repaint();
@@ -204,7 +193,7 @@ public class AsciiScroll extends Applet implements Runnable {
    * @deprecated
    */
   public boolean mouseExit(Event pEvent, int pX, int pY) {
-    //start();
+    // start();
     ivMouseOver = false;
 
     repaint();
@@ -248,12 +237,12 @@ public class AsciiScroll extends Applet implements Runnable {
 
   /**
    * Method readfile.
+   * 
    * @param pFileName
    * @throws MalformedURLException
    * @throws IOException
    */
-  private void readfile(String pFileName)
-    throws MalformedURLException, IOException {
+  private void readfile(String pFileName) throws MalformedURLException, IOException {
     URL url = new URL(getCodeBase(), pFileName);
     if (null == url) {
       throw new FileNotFoundException();
@@ -391,25 +380,5 @@ public class AsciiScroll extends Applet implements Runnable {
   public void update(Graphics pGraphics) {
     paint(pGraphics);
   }
-}
-  public void start() {
-    if (null == ivThread) {
-      ivThread = new Thread(this);
-    }
-    ivThread.start();
-  }
 
-  /**
-   * @see java.applet.Applet#stop()
-   */
-  public void stop() {
-    ivThread.stop();
-  }
-
-  /**
-   * @see java.awt.Component#update(Graphics)
-   */
-  public void update(Graphics pGraphics) {
-    paint(pGraphics);
-  }
 }

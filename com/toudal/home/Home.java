@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.home
  *
@@ -57,9 +57,7 @@ public class Home extends Applet implements Runnable {
         lString = "rundll32 url.dll,FileProtocolHandler " + pDisplayURL;
         Runtime.getRuntime().exec(lString);
       } else {
-        System.out.println(
-          "Visiting client is running a unix platform, cool dude!"
-        );
+        System.out.println("Visiting client is running a unix platform, cool dude!");
         lString = "netscape -remote openURL(" + pDisplayURL + ")";
         Process process = Runtime.getRuntime().exec(lString);
         try {
@@ -69,9 +67,7 @@ public class Home extends Applet implements Runnable {
             Process lProcess = Runtime.getRuntime().exec(lString);
           }
         } catch (InterruptedException pInterruptedException) {
-          System.err.println(
-            "Error bringing up browser, cmd='" + lString + "'"
-          );
+          System.err.println("Error bringing up browser, cmd='" + lString + "'");
           System.err.println("Caught: " + pInterruptedException);
         }
       }
@@ -92,18 +88,23 @@ public class Home extends Applet implements Runnable {
 
   private Thread ivThread;
 
-  public Home() {}
+  public Home() {
+  }
 
   public void destroy() {
-    if (ivThread != null) ivThread.destroy();
+    if (ivThread != null)
+      ivThread.destroy();
   }
 
   public void displayURL(String pString, boolean pFlag) {
-    if (pFlag) displayURL(pString); else try {
-      getAppletContext().showDocument(new URL(pString));
-    } catch (MalformedURLException pMalformedURLException) {
-      System.err.println("Caught: " + pMalformedURLException);
-    }
+    if (pFlag)
+      displayURL(pString);
+    else
+      try {
+        getAppletContext().showDocument(new URL(pString));
+      } catch (MalformedURLException pMalformedURLException) {
+        System.err.println("Caught: " + pMalformedURLException);
+      }
   }
 
   public String getAppletInfo() {
@@ -133,10 +134,12 @@ public class Home extends Applet implements Runnable {
           ivTextArea.setText("");
           char ac[] = ivWorld.getContext().toCharArray();
           for (int i = 0; i < ac.length; i++) {
-            if (ivWorld.cvChanged) break;
-            if ("\243".equalsIgnoreCase(ac[i] + "")) ivTextArea.append(
-              "\n"
-            ); else ivTextArea.append(ac[i] + "");
+            if (ivWorld.cvChanged)
+              break;
+            if ("\243".equalsIgnoreCase(ac[i] + ""))
+              ivTextArea.append("\n");
+            else
+              ivTextArea.append(ac[i] + "");
             Thread.sleep(5L);
           }
         } catch (Exception _ex) {
@@ -147,7 +150,7 @@ public class Home extends Applet implements Runnable {
   }
 
   public void start() {
-    Slider slider = new Slider(true);
+    TSlider slider = new TSlider(true);
     slider.setBounds(0, 0, 414, 190);
     slider.setSliderSize(1);
     slider.setSliderPos(132);

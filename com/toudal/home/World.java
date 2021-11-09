@@ -8,7 +8,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.*;
 
-/**
+/*
  * ===========================================================================
  * com.toudal.home
  *
@@ -55,59 +55,55 @@ public class World extends TPanel implements TButtonListener {
     int i = 0;
     ivTButtonWeb = new TButtonWeb[howmany];
     for (int j = 0; j < ivVector.size(); j++) {
-      ivTButtonWeb[j] =
-        new TButtonWeb(
-          (Image[]) ivImages.elementAt(j),
-          ivPoints[j],
-          "",
-          ivColorExited
-        );
+      ivTButtonWeb[j] = new TButtonWeb((Image[]) ivImages.elementAt(j), ivPoints[j], "", ivColorExited);
       ivTButtonWeb[j].setBounds(0, i, 115, ivInty[j]);
       i += ivInty[j];
-      if (ivListens[j]) ivTButtonWeb[j].addButtonListener(this);
+      if (ivListens[j])
+        ivTButtonWeb[j].addTButtonListener(this);
       ivTAnchorPanel.add(ivTButtonWeb[j], false, true, true, false);
     }
   }
 
-  public void ButtonClicked(MouseEvent pMouseEvent) {
+  public void TButtonClicked(MouseEvent pMouseEvent) {
     if (pMouseEvent.getSource() instanceof TButtonWeb) {
       TButtonWeb lTButtonWeb = (TButtonWeb) pMouseEvent.getSource();
-      for (int i = 0; i < howmany; i++) if (
-        lTButtonWeb.equals(ivTButtonWeb[i]) && !ivUrls[i].equalsIgnoreCase("")
-      ) cvHome.displayURL(ivUrls[i], false);
+      for (int i = 0; i < howmany; i++)
+        if (lTButtonWeb.equals(ivTButtonWeb[i]) && !ivUrls[i].equalsIgnoreCase(""))
+          cvHome.displayURL(ivUrls[i], false);
     }
   }
 
-  public void ButtonEntered(MouseEvent pMouseEvent) {
+  public void TButtonEntered(MouseEvent pMouseEvent) {
     if (pMouseEvent.getSource() instanceof TButtonWeb) {
       cvChanged = true;
       cvOver = true;
       ivTimeOver = (new Date()).getTime();
       TButtonWeb lTButtonWeb = (TButtonWeb) pMouseEvent.getSource();
-      for (int i = 0; i < howmany; i++) if (
-        lTButtonWeb.equals(ivTButtonWeb[i])
-      ) {
-        ivActive = i;
-        ivTButtonWeb[i].doUpdate(1, ivLabels[i], ivColorEntered);
-      }
+      for (int i = 0; i < howmany; i++)
+        if (lTButtonWeb.equals(ivTButtonWeb[i])) {
+          ivActive = i;
+          ivTButtonWeb[i].doUpdate(1, ivLabels[i], ivColorEntered);
+        }
     }
   }
 
-  public void ButtonExited(MouseEvent pMouseEvent) {
+  public void TButtonExited(MouseEvent pMouseEvent) {
     if (pMouseEvent.getSource() instanceof TButtonWeb) {
       cvChanged = false;
       cvOver = false;
       ivTimeOver = (new Date()).getTime();
-      TButtonWeb lTButtonWeb = (TButtonWeb) mouseevent.getSource();
-      for (int i = 0; i < howmany; i++) if (
-        lTButtonWeb.equals(ivTButtonWeb[i])
-      ) ivTButtonWeb[i].doUpdate(0, "", ivColorExited);
+      TButtonWeb lTButtonWeb = (TButtonWeb) pMouseEvent.getSource();
+      for (int i = 0; i < howmany; i++)
+        if (lTButtonWeb.equals(ivTButtonWeb[i]))
+          ivTButtonWeb[i].doUpdate(0, "", ivColorExited);
     }
   }
 
-  public void ButtonPressed(MouseEvent pMouseEvent) {}
+  public void TButtonPressed(MouseEvent pMouseEvent) {
+  }
 
-  public void ButtonReleased(MouseEvent pMouseEvent) {}
+  public void TButtonReleased(MouseEvent pMouseEvent) {
+  }
 
   public String getContext() {
     return ivTexts[ivActive];
@@ -142,15 +138,14 @@ public class World extends TPanel implements TButtonListener {
   }
 
   public static World getInstance() {
-    if (ivWorld == null) return new World(); else return ivWorld;
+    if (ivWorld == null)
+      return new World();
+    else
+      return ivWorld;
   }
 
   public void mayUpdate() {
-    if (
-      !cvChanged &&
-      cvOver &&
-      ivTimeOver + (long) ivInterval < (new Date()).getTime()
-    ) {
+    if (!cvChanged && cvOver && ivTimeOver + (long) ivInterval < (new Date()).getTime()) {
       cvChanged = false;
       ivTimeOver = (new Date()).getTime();
       ivTButtonWeb[ivActive].doUpdate(3, ivLabels[ivActive], ivColorSpecial);
@@ -163,7 +158,8 @@ public class World extends TPanel implements TButtonListener {
       ivBufferReader = new BufferedReader(new InputStreamReader(ivInputStream));
       do {
         String s1 = ivBufferReader.readLine();
-        if (s1 == null) break;
+        if (s1 == null)
+          break;
         ivVector.addElement(new String(s1));
       } while (true);
     } catch (Exception pException) {
@@ -178,31 +174,23 @@ public class World extends TPanel implements TButtonListener {
     }
     String s = "https://www.toudal.com/images/";
     for (int i = 0; i < ivVector.size(); i++) {
-      for (
-        StringTokenizer lStringTokenizer = new StringTokenizer(
-          ivVector.elementAt(i).toString(),
-          "\244"
-        );
-        lStringTokenizer.hasMoreTokens();
-      ) try {
-        Image lImage[] = new Image[3];
-        lImage[0] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
-        lImage[1] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
-        lImage[2] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
-        ivImages.addElement(lImage);
-        ivPoints[i] =
-          new Point(
-            Integer.valueOf(lStringTokenizer.nextToken().trim()).intValue(),
-            Integer.valueOf(lStringTokenizer.nextToken().trim()).intValue()
-          );
-        ivListens[i] =
-          (new Boolean(lStringTokenizer.nextToken().trim())).booleanValue();
-        ivLabels[i] = lStringTokenizer.nextToken().trim();
-        ivUrls[i] = lStringTokenizer.nextToken().trim();
-        ivTexts[i] = lStringTokenizer.nextToken().trim();
-      } catch (NoSuchElementException pNoSuchElementException) {
-        System.out.println("Element not found: " + pException);
-      }
+      for (StringTokenizer lStringTokenizer = new StringTokenizer(ivVector.elementAt(i).toString(),
+          "\244"); lStringTokenizer.hasMoreTokens();)
+        try {
+          Image lImage[] = new Image[3];
+          lImage[0] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
+          lImage[1] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
+          lImage[2] = getImage(s + lStringTokenizer.nextToken().trim(), ".gif");
+          ivImages.addElement(lImage);
+          ivPoints[i] = new Point(Integer.valueOf(lStringTokenizer.nextToken().trim()).intValue(),
+              Integer.valueOf(lStringTokenizer.nextToken().trim()).intValue());
+          ivListens[i] = (new Boolean(lStringTokenizer.nextToken().trim())).booleanValue();
+          ivLabels[i] = lStringTokenizer.nextToken().trim();
+          ivUrls[i] = lStringTokenizer.nextToken().trim();
+          ivTexts[i] = lStringTokenizer.nextToken().trim();
+        } catch (NoSuchElementException pNoSuchElementException) {
+          System.out.println("Element not found: " + pNoSuchElementException);
+        }
     }
   }
 
@@ -242,5 +230,11 @@ public class World extends TPanel implements TButtonListener {
     ivColorPressed = Color.lightGray;
     ivColorReleased = Color.lightGray;
     ivColorSpecial = Color.darkGray;
+  }
+
+  @Override
+  protected void sizeChanged() {
+    // TODO Auto-generated method stub
+
   }
 }
