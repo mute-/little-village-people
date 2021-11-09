@@ -28,7 +28,7 @@ public class Human {
   public boolean cvDead = false;
 
   // Privates
-  private Home ivHome;
+  private Create ivHome;
   private Map ivMap;
 
   private char ivSex = '0';
@@ -41,7 +41,7 @@ public class Human {
   private int ivFresh = 0;
   private int ivMsek = 0;
 
-  public Human(Home pHome, Map pMap) {
+  public Human(Create pHome, Map pMap) {
     super();
     ivHome = pHome;
     ivMap = pMap;

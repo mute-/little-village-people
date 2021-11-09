@@ -28,6 +28,11 @@ public abstract class TPanel extends Panel {
    */
   private static final long serialVersionUID = -1330824276091610957L;
 
+  protected abstract void sizeChanged();
+
+  protected int ivHeight;
+  protected int ivWidth;
+
   public TPanel() {
     ivHeight = 0;
     ivWidth = 0;
@@ -55,8 +60,4 @@ public abstract class TPanel extends Panel {
     sizeChanged();
   }
 
-  protected abstract void sizeChanged();
-
-  protected int ivHeight;
-  protected int ivWidth;
 }

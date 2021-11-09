@@ -30,13 +30,19 @@ public abstract class TCanvas extends Canvas {
    */
   private static final long serialVersionUID = 5911829596296514334L;
 
+  private static Hashtable ivHashtable = new Hashtable();
+  protected Image ivImage;
+  protected Graphics ivGraphics;
+  protected int ivHeight;
+  protected int ivWidth;
+
   public TCanvas() {
     ivHeight = 0;
     ivWidth = 0;
   }
 
-  public void addImage(String s, Image image) {
-    ivHashtable.put(s, image);
+  public void addImage(String pImagePath, Image pImage) {
+    ivHashtable.put(pImagePath, pImage);
   }
 
   public void clear() {
@@ -124,9 +130,4 @@ public abstract class TCanvas extends Canvas {
       pGraphics.drawImage(ivImage, 0, 0, this);
   }
 
-  private static Hashtable ivHashtable = new Hashtable();
-  protected Image ivImage;
-  protected Graphics ivGraphics;
-  protected int ivHeight;
-  protected int ivWidth;
 }

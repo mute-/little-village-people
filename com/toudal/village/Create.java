@@ -25,7 +25,7 @@ import java.util.*;
  * DESCRIPTION: TOUDAL.WRITEME
  * ===========================================================================
  */
-public class Home extends Applet implements ActionListener, Runnable {
+public class Create extends Applet implements ActionListener, Runnable {
 
   /** */
   public static final int cvMapSize = 80;

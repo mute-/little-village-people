@@ -27,7 +27,7 @@ public class Map {
   // Public
 
   // Privates
-  private Home ivHome;
+  private Create ivHome;
 
   // Coords
   private int ivHouseX[] = { 3, 13, 30, 5, 34, 7, 23, 5, 45, 25, 60, 45, 5, 70, 77, };
@@ -45,7 +45,7 @@ public class Map {
   /**
    * Map constructor comment.
    */
-  public Map(Home pHome) {
+  public Map(Create pHome) {
     super();
     ivHome = pHome;
   }

@@ -29,6 +29,18 @@ public class TSlider extends TPanel implements MouseListener, MouseMotionListene
    */
   private static final long serialVersionUID = -5312997080156335732L;
 
+  private Component ivComponentLeft;
+  private Component ivComponentRight;
+  private Component ivComponentUp;
+  private Component ivComponentDown;
+  private int ivSliderPos;
+  private int ivSliderSize;
+  private Image ivImage;
+  private Graphics ivGraphics;
+  private boolean ivMouseDragging;
+  private boolean ivVertical;
+  private boolean ivSpeedTab;
+
   public TSlider() {
     ivComponentLeft = new Button("UpComponent");
     ivComponentRight = new Button("RightComponent");
@@ -217,16 +229,4 @@ public class TSlider extends TPanel implements MouseListener, MouseMotionListene
     else
       pGraphics.drawImage(ivImage, 0, ivSliderPos, this);
   }
-
-  private Component ivComponentLeft;
-  private Component ivComponentRight;
-  private Component ivComponentUp;
-  private Component ivComponentDown;
-  private int ivSliderPos;
-  private int ivSliderSize;
-  private Image ivImage;
-  private Graphics ivGraphics;
-  private boolean ivMouseDragging;
-  private boolean ivVertical;
-  private boolean ivSpeedTab;
 }
